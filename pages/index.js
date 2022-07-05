@@ -19,6 +19,9 @@ function Home() {
       </Link>
       <div>Home Page</div>
       <button onClick={handleClick}>Place Order</button>
+      <button onClick={() => {
+        router.push('/posts')
+      }}>Go To Posts</button>
     </div>
   )
 }
