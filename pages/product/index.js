@@ -1,29 +1,28 @@
-import Link from 'next/link'
-import React from 'react'
 
-function ProductList({ productId = 100 }) {
+function ProductList({ products }) {
     return (
-        <ol>
-            <Link href="/">
-                <a>Home Page</a>
-            </Link>
-            <Link href={`/product/${productId}`}>
-                <a>
-                    <li>Product 1</li>
-                </a>
-            </Link>
-            <Link href="/product/2">
-                <a>
-                    <li>Product 2</li>
-                </a>
-            </Link>
-            <Link href="/product/3" replace>
-                <a>
-                    <li>Product 3</li>
-                </a>
-            </Link>
-        </ol>
+        <>
+            <h1>List of products</h1>
+            {products.map((info, index) => (
+                <div key={index}>
+                    <h2>{info.id} {info.title} {info.price}</h2>
+                    <hr />
+                </div>
+            ))}
+        </>
     )
 }
 
 export default ProductList
+
+export async function getStaticProps() {
+    const response = await fetch('http://localhost:4000/products');
+    const data = await response.json();
+
+    return {
+        props: {
+            products: data
+        }
+    }
+
+}
