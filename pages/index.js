@@ -31,8 +31,8 @@ function Home({ todo }) {
           {info.id}:{info.title}:{info.completed}:
         </div>
       ))}
-      <button onClick={handleClick}>Place Order</button>
-      <button onClick={() => {
+      <button  className="btn btn-primary" onClick={handleClick}>Place Order</button>
+      <button  className="btn btn-success" onClick={() => {
         router.push('/posts')
       }}>Go To Posts</button>
     </div>

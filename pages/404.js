@@ -1,8 +1,8 @@
-import React from 'react'
+import styles from "../styles/notDataFound.module.css"
 
 function PageNotFound() {
     return (
-        <div>404</div>
+        <div className={styles.notDataFound}>404</div>
     )
 }
 
