@@ -1,3 +1,4 @@
+import styles from "../../styles/Title.module.scss";
 
 function ProductList({ products }) {
     return (
@@ -5,7 +6,7 @@ function ProductList({ products }) {
             <h1>List of products</h1>
             {products.map((info, index) => (
                 <div key={index}>
-                    <h2>{info.id} {info.title} {info.price}</h2>
+                    <h2 className={styles.highlights}>{info.id} {info.title} {info.price}</h2>
                     <hr />
                 </div>
             ))}
