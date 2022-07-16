@@ -3,8 +3,9 @@ import Head from 'next/head';
 import { ThemeProvider } from "styled-components";
 import Footer from '@/layout/Footer';
 import Header from '@/layout/Header';
+import { SessionProvider } from "next-auth/react"
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
   if (Component.getLayout) {
     return Component.getLayout(<Component {...pageProps} />)
@@ -15,15 +16,17 @@ function MyApp({ Component, pageProps }) {
     }
   }
   return (
-    <ThemeProvider theme={theme}>
-      <Head>
-        <title>Learing NextJS</title>
-        <meta name='description' content='Learing from the zero' />
-      </Head>
-      <Header />
-      <Component {...pageProps} />
-      <Footer />
-    </ThemeProvider>
+    <SessionProvider session={session}>
+      <ThemeProvider theme={theme}>
+        <Head>
+          <title>Learing NextJS</title>
+          <meta name='description' content='Learing from the zero' />
+        </Head>
+        <Header />
+        <Component {...pageProps} />
+        <Footer />
+      </ThemeProvider>
+    </SessionProvider>
   )
 }
 

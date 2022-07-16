@@ -9,6 +9,12 @@ npm run dev
 # or
 yarn dev
 ```
+## Github Credentials 
+Client ID:-
+1621c21a4c12bd282d28
+
+Clinet Secrets :-
+702df27313d6d7cb3b207ff440c168dcd9fba051
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
