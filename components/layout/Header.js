@@ -3,7 +3,6 @@ import { useSession, signIn, signOut } from "next-auth/react"
 
 function Header() {
     const { data: session } = useSession()
-    console.log("Session", session)
     return (
         <div>
             <ul>
@@ -14,13 +13,15 @@ function Header() {
                         </a>
                     </Link>
                 </li>
-                <li>
-                    <Link href="/blog">
-                        <a>
-                            Blog
-                        </a>
-                    </Link>
-                </li>
+                {session && (
+                    <li>
+                        <Link href="/posts">
+                            <a>
+                                Blog
+                            </a>
+                        </Link>
+                    </li>
+                )}
                 <li>
                     <Link href="/product">
                         <a>

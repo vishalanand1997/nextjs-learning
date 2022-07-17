@@ -1,8 +1,10 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-function Home({ todo }) {
-  // const [todo, setTodo] = useState([]);
+import { getSession } from "next-auth/react"
+
+function Home({ todo, title }) {
+  // const [todo, setTodo] = useSession([]);
   const router = useRouter();
 
   const handleClick = () => {
@@ -25,6 +27,7 @@ function Home({ todo }) {
       <Link href="/product">
         <a>Product</a>
       </Link> */}
+      {title}
       <div>Home Page</div>
       {todo.length > 0 && todo.map((info, index) => (
         <div key={index}>
@@ -41,15 +44,15 @@ function Home({ todo }) {
 
 export default Home
 
-export async function getServerSideProps() {
-  const githubID = process.env.GITHUB_ID;
-  const githubSecret = process.env.GITHUB_SECRET;
-  console.log("Connecting to the DB", githubID, githubSecret);
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+  const heading = session ? "Blogs from the premium term" : "Blogs from the free terbm";
   const response = await fetch("https://jsonplaceholder.typicode.com/todos");
   const data = await response.json();
   return {
     props: {
-      todo: data
+      todo: data,
+      title: heading
     }
   }
 }
